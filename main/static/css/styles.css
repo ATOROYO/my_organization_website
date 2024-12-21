@@ -107,3 +107,14 @@ header {
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
+
+.feature-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #4caf50;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #666;
+}
