@@ -91,3 +91,14 @@ header {
   padding: 2rem 1rem;
   background: #f9f9f9;
 }
+
+.feature-card {
+  background: white;
+  padding: 1.5rem;
+  margin: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
