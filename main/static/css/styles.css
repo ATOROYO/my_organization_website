@@ -190,6 +190,15 @@ header {
   transform: scale(1.05);
 }
 
+/* Vision & Mission Section */
+.vision-mission {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: #f4f4f4;
+  padding: 50px 20px;
+}
+
 /* Responsive Navbar */
 @media (max-width: 768px) {
   .toggle-nav {
