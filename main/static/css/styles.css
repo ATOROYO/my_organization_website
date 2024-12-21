@@ -221,6 +221,29 @@ header {
   color: #4caf50;
 }
 
+/* Call to Action Section */
+.cta {
+  text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(to right, #81c784, #66bb6a);
+  color: white;
+}
+
+.cta h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.cta .btn-primary {
+  background-color: white;
+  color: #4caf50;
+}
+
+.cta .btn-primary:hover {
+  background-color: #4caf50;
+  color: white;
+}
+
 /* Responsive Navbar */
 @media (max-width: 768px) {
   .toggle-nav {
