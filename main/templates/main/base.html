@@ -1,17 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <script src="{% static 'js/scripts.js' %}" defer></script>
-    <title>{% block title %}My Organization{% endblock %}</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
     <header>
-      <nav>
-        <div class="logo">Logo</div>
-        <button class="toggle-nav">☰</button>
+      <nav class="navbar">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="{% static 'images/logo.png' %}" alt="Logo" />
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <form action="{% url 'search' %}" method="GET">
+            <input type="text" name="q" placeholder="Search..." />
+            <button type="submit">Search</button>
+          </form>
+        </div>
+
+        <!-- Navigation Links -->
         <ul class="nav-links">
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
@@ -22,9 +34,5 @@
         </ul>
       </nav>
     </header>
-    <main>{% block content %}{% endblock %}</main>
-    <footer>
-      <p>&copy; 2024 My Organization</p>
-    </footer>
   </body>
 </html>
