@@ -199,6 +199,28 @@ header {
   padding: 50px 20px;
 }
 
+.vision-card,
+.mission-card {
+  flex: 1;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vision-card:hover,
+.mission-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.vision-card h3,
+.mission-card h3 {
+  margin-bottom: 10px;
+  color: #4caf50;
+}
+
 /* Responsive Navbar */
 @media (max-width: 768px) {
   .toggle-nav {
