@@ -31,3 +31,7 @@ header {
   color: white;
   transition: color 0.3s ease;
 }
+
+.nav-links a:hover {
+  color: #f3f3f3;
+}
