@@ -56,3 +56,14 @@ header {
   text-align: center;
   transition: all 0.5s ease-in-out;
 }
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
