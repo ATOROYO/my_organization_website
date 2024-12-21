@@ -118,3 +118,25 @@ header {
   font-size: 1rem;
   color: #666;
 }
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .toggle-nav {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #4caf50;
+    padding: 1rem 0;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+}
