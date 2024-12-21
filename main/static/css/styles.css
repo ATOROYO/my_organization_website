@@ -162,18 +162,26 @@ header {
     display: block;
   }
 
+  .search-bar input {
+    width: 50%;
+  }
+
   .nav-links {
     display: none;
     flex-direction: column;
+    background-color: #333;
+    padding: 1rem;
     position: absolute;
+    right: 0;
     top: 100%;
-    left: 0;
-    width: 100%;
-    background: #4caf50;
-    padding: 1rem 0;
+    width: 200px;
   }
 
-  .nav-links.show {
+  .nav-links.active {
     display: flex;
+  }
+
+  .navbar {
+    position: relative;
   }
 }
