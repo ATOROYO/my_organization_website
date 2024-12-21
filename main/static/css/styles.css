@@ -158,6 +158,14 @@ header {
   color: #666;
 }
 
+/* About Us Section */
+.about-us {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 50px 20px;
+}
+
 /* Responsive Navbar */
 @media (max-width: 768px) {
   .toggle-nav {
