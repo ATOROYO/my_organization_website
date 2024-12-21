@@ -82,3 +82,12 @@ header {
   background: #4caf50;
   color: white;
 }
+
+/* Features Section */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 2rem 1rem;
+  background: #f9f9f9;
+}
