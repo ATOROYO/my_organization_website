@@ -44,3 +44,15 @@ header {
   color: white;
   cursor: pointer;
 }
+
+/* Hero Section */
+.hero {
+  height: 80vh;
+  background: linear-gradient(to right, #4caf50, #81c784);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
+}
