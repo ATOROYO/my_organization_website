@@ -11,5 +11,5 @@ urlpatterns = [
     path('search/', views.search_results, name='search_results'),
     path('register/', views.register, name='register'),
     path('login/', views.login_view, name='login'),
-    path('search/', views.search, name='search'),
+    # path('search/', views.search, name='search'),
 ]

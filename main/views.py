@@ -50,8 +50,12 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'main/login.html', {'form': form})
 
-def search(request):
-    query = request.GET.get('q', '')  # Get the search query
-    results = []  # Replace with your search logic
-    context = {'query': query, 'results': results}
-    return render(request, 'main/search_results.html', context)
+def search_results(request):
+    query = request.GET.get('q')
+    results = [
+        {'title': 'Example Result 1', 'description': 'Description of result 1.', 'url': '#'},
+        {'title': 'Example Result 2', 'description': 'Description of result 2.', 'url': '#'},
+        # Add your actual results here
+    ] if query else []
+    return render(request, 'main/search_results.html', {'query': query, 'results': results})
+

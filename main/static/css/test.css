@@ -496,7 +496,7 @@ header {
 
 /* Hero Section (Gallery Page Specific) */
 .hero.gallery-hero {
-  background-image: url("{% static 'images/gallery-hero-background.jpg' %}"); /* Different hero image */
+  background-image: url("{% static 'images/about_us.jpg' %}"); /* Different hero image */
   background-color: rgba(46, 134, 193, 0.6); /* Adjust overlay as needed */
 }
 
