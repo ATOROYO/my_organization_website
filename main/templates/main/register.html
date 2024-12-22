@@ -1,0 +1,61 @@
+{% extends "main/base.html" %} {% load static %} {% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <h1>Register</h1>
+    <p>Create your account to get started with My Organization.</p>
+    <a href="{% url 'login' %}" class="btn-primary"
+      >Already have an account? Login</a
+    >
+  </div>
+</section>
+
+<section class="register-form">
+  <div class="form-container">
+    <h2>Create an Account</h2>
+    <form method="POST" action="{% url 'register' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter your username"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password1">Password</label>
+        <input
+          type="password"
+          id="password1"
+          name="password1"
+          placeholder="Enter your password"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password2">Confirm Password</label>
+        <input
+          type="password"
+          id="password2"
+          name="password2"
+          placeholder="Confirm your password"
+          required
+        />
+      </div>
+      <button type="submit" class="btn-submit">Register</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

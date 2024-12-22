@@ -1,18 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search Results</title>
-  </head>
-  <body>
-    <h1>Search Results for "{{ query }}"</h1>
-    <ul>
-      {% for result in results %}
-      <li>{{ result }}</li>
-      {% empty %}
-      <li>No results found.</li>
-      {% endfor %}
-    </ul>
-  </body>
-</html>
+{% extends "main/base.html" %} {% load static %} {% block content %}
+<section class="hero search-results-hero">
+  <div class="hero-content">
+    <h1>Search Results</h1>
+    <p>Your search returned the following results:</p>
+    <a href="{% url 'home' %}" class="btn-primary">Back to Home</a>
+  </div>
+</section>
+
+<section class="search-results">
+  {% if results %}
+  <h2 class="section-title">Results for "{{ query }}"</h2>
+  <ul class="results-list">
+    {% for result in results %}
+    <li class="result-item">
+      <h3>{{ result.title }}</h3>
+      <p>{{ result.description }}</p>
+      <a href="{{ result.url }}" class="btn-secondary">View Details</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <h2 class="section-title">No Results Found</h2>
+  <p class="no-results">
+    Sorry, we couldn't find anything matching your search query.
+  </p>
+  {% endif %}
+</section>
+{% endblock %}

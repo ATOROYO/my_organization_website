@@ -256,6 +256,64 @@ header {
   color: white;
 }
 
+/* Services Section */
+.services {
+  padding: 50px 20px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #4caf50;
+}
+
+.service-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.service-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.service-card h3 {
+  font-size: 1.8rem;
+  margin: 15px 0;
+  color: #333;
+}
+
+.service-card p {
+  font-size: 1.1rem;
+  padding: 0 15px 20px;
+  color: #555;
+}
+
+.service-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.service-card:hover img {
+  transform: scale(1.1);
+}
+
 /* Responsive Navbar */
 @media (max-width: 768px) {
   .toggle-nav {

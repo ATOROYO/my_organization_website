@@ -1,0 +1,66 @@
+{% extends "main/base.html" %} {% load static %} {% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <h1>Contact Us</h1>
+    <p>We are here to help. Reach out to us today!</p>
+    <a href="{% url 'services' %}" class="btn-primary">Our Services</a>
+  </div>
+</section>
+
+<section class="contact-details">
+  <h2 class="section-title">Our Contact Information</h2>
+  <div class="contact-info">
+    <div class="info-box">
+      <h3>Phone Numbers</h3>
+      <p><strong>Office:</strong> +1 234 567 890</p>
+      <p><strong>Support:</strong> +1 987 654 321</p>
+    </div>
+    <div class="info-box">
+      <h3>Location</h3>
+      <p>123 Innovation Street</p>
+      <p>City, State, ZIP Code</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-form">
+  <h2 class="section-title">Send Us a Message</h2>
+  <p class="section-subtitle">
+    Fill out the form below, and we’ll get back to you shortly.
+  </p>
+  <form action="{% url 'contact' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Your Name"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Your Email"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea
+        id="message"
+        name="message"
+        rows="5"
+        placeholder="Your Message"
+        required
+      ></textarea>
+    </div>
+    <button type="submit" class="btn-submit">Send Message</button>
+  </form>
+</section>
+{% endblock %}
