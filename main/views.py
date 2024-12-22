@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import UserRegisterForm
+from django.core.mail import send_mail
+from django.conf import settings # Import settings
+from .forms import ContactForm, RegistrationForm
 from .models import TeamMember, GalleryImage, Post
 
 def home(request):
@@ -22,7 +25,35 @@ def gallery(request):
     return render(request, 'main/gallery.html', {'images': images})
 
 def contact(request):
-    return render(request, 'main/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            try:
+                send_mail(
+                    'Contact Form Submission', #Subject
+                    f'Name: {name}\nEmail: {email}\nMessage: {message}', #Message
+                    settings.EMAIL_HOST_USER, #From
+                    [settings.EMAIL_HOST_USER], #To (You could use a different email here)
+                    fail_silently=False,
+                )
+                return redirect('success') # Redirect to a success page
+            except Exception as e:
+                print(f"Error sending email: {e}")
+                return render(request, 'contact.html', {'form': form, 'error_message': 'There was an error sending your message. Please try again later.'})
+
+        else:
+            # Form is invalid, re-render with error messages
+            return render(request, 'main/contact.html', {'form': form})
+    else:
+        form = ContactForm()
+    return render(request, 'main/contact.html', {'form': form})
+
+# def success(request):
+#     return render(request, 'success.html') # Render a success page
 
 def search_results(request):
     query = request.GET.get('q')
@@ -31,24 +62,36 @@ def search_results(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('login')
+            # Save the user to the database (handle password hashing etc.)
+            user = form.save()
+            # You can add logic for sending a welcome email or redirecting to a success page
+            messages.success(request, 'You have registered successfully!')
+            return redirect('login')  # Redirect to login page after successful registration
+        else:
+            # Form is invalid, re-render with error messages
+            return render(request, 'main/register.html', {'form': form})
     else:
-        form = UserRegisterForm()
+        form = RegistrationForm()
     return render(request, 'main/register.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
             login(request, user)
-            return redirect('home')
-    else:
-        form = AuthenticationForm()
-    return render(request, 'main/login.html', {'form': form})
+            messages.success(request, 'You are logged in successfully.')
+            return redirect('home')  # Redirect to the home page or dashboard
+        else:
+            messages.error(request, 'Invalid credentials. Please try again.')
+            return redirect('login')
+    
+    return render(request, 'main/login.html')
 
 def search_results(request):
     query = request.GET.get('q')
