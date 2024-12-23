@@ -256,12 +256,6 @@ header {
 .hero.about-hero {
   /* More specific selector */
   background-image: url("{% static 'images/about-hero-background.jpg' %}"); /* Different hero image if needed */
-  background-color: rgba(
-    44,
-    62,
-    80,
-    0.7
-  ); /* Adjust overlay opacity as needed */
 }
 
 /* About Us Section */
