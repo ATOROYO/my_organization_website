@@ -42,22 +42,32 @@ class RegistrationForm(forms.Form):
 
 class ContactForm(forms.Form):
     name = forms.CharField(
-        label='Your Name',  # More user-friendly label
+        label='Your Name',
         max_length=100,
-        widget=forms.TextInput(attrs={'placeholder': 'Enter your name'}) # Placeholder in the form
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Enter your name',
+            'class': 'form-control',
+        })
     )
     email = forms.EmailField(
         label='Your Email',
-        widget=forms.EmailInput(attrs={'placeholder': 'Enter your email'})
+        widget=forms.EmailInput(attrs={
+            'placeholder': 'Enter your email',
+            'class': 'form-control',
+        })
     )
     message = forms.CharField(
         label='Your Message',
-        widget=forms.Textarea(attrs={'rows': 5, 'placeholder': 'Enter your message'})
+        widget=forms.Textarea(attrs={
+            'rows': 5,
+            'placeholder': 'Enter your message',
+            'class': 'form-control',
+        })
     )
 
     def clean_message(self):
         message = self.cleaned_data['message']
-        if len(message.strip()) < 10: #.strip() to remove white spaces
+        if len(message.strip()) < 10:
             raise forms.ValidationError("Message must be at least 10 characters long.")
         return message
 
