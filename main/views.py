@@ -24,26 +24,37 @@ def gallery(request):
     images = GalleryImage.objects.all()
     return render(request, 'main/gallery.html', {'images': images})
 
+from django.shortcuts import render
+from django.core.mail import send_mail
+from django.contrib import messages
+from .forms import ContactForm
+
 def contact_view(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
-        
-        # Try to send an email
-        try:
-            send_mail(
-                subject=f"Contact Form Submission from {name}",
-                message=f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}",
-                from_email='your_email@example.com',  # Replace with your email
-                recipient_list=['recipient@example.com'],  # Replace with recipient's email
-                fail_silently=False,
-            )
-            messages.success(request, 'Your message has been sent successfully!')
-        except Exception as e:
-            messages.error(request, 'An error occurred while sending your message. Please try again later.')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            
+            try:
+                send_mail(
+                    subject=f"Contact Form Submission from {name}",
+                    message=f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}",
+                    from_email='davidatoroyosika@gmail.com',  # Replace with your email
+                    recipient_list=['sharonlove'],  # Replace with recipient's email
+                    fail_silently=False,
+                )
+                messages.success(request, 'Your message has been sent successfully!')
+            except Exception as e:
+                messages.error(request, 'An error occurred while sending your message. Please try again later.')
+        else:
+            messages.error(request, 'Please correct the errors in the form.')
+    else:
+        form = ContactForm()
 
-    return render(request, 'contact.html')
+    return render(request, 'main/contact.html', {'form': form})
+
 
 def search_results(request):
     query = request.GET.get('q')
