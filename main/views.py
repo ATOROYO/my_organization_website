@@ -70,6 +70,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import ContactMessage  # Assuming you have a model for contact form messages
+from .models import TeamMember, GalleryImage, Post
 
 def home(request):
     return render(request, 'main/home.html')
@@ -79,6 +80,14 @@ def about(request):
 
 def services(request):
     return render(request, 'main/services.html')
+
+def team(request):
+    members = TeamMember.objects.all()
+    return render(request, 'main/team.html', {'members': members})
+
+def gallery(request):
+    images = GalleryImage.objects.all()
+    return render(request, 'main/gallery.html', {'images': images})
 
 def register(request):
     if request.method == 'POST':
