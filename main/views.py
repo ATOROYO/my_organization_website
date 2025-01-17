@@ -71,6 +71,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import ContactMessage  # Assuming you have a model for contact form messages
 
+def home(request):
+    return render(request, 'main/home.html')
+
+def about(request):
+    return render(request, 'main/about.html')
+
+def services(request):
+    return render(request, 'main/services.html')
+
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
