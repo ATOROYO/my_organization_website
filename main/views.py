@@ -65,3 +65,56 @@
 #     ] if query else []
 #     return render(request, 'main/search_results.html', {'query': query, 'results': results})
 
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from .models import ContactMessage  # Assuming you have a model for contact form messages
+
+def register(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+
+        if password1 == password2:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, "Username already exists.")
+            elif User.objects.filter(email=email).exists():
+                messages.error(request, "Email already registered.")
+            else:
+                User.objects.create_user(username=username, email=email, password=password1)
+                messages.success(request, "Account created successfully. Please log in.")
+                return redirect('login')
+        else:
+            messages.error(request, "Passwords do not match.")
+    return render(request, 'register.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Logged in successfully!")
+            return redirect('home')  # Redirect to your homepage
+        else:
+            messages.error(request, "Invalid username or password.")
+    return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, "Logged out successfully.")
+    return redirect('login')
+
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        message = request.POST['message']
+        ContactMessage.objects.create(name=name, email=email, message=message)
+        messages.success(request, "Message sent successfully.")
+        return redirect('contact')
+    return render(request, 'contact.html')
