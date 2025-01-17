@@ -107,7 +107,7 @@ def register(request):
                 return redirect('login')
         else:
             messages.error(request, "Passwords do not match.")
-    return render(request, 'register.html')
+    return render(request, 'main/register.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -120,12 +120,12 @@ def login_view(request):
             return redirect('home')  # Redirect to your homepage
         else:
             messages.error(request, "Invalid username or password.")
-    return render(request, 'login.html')
+    return render(request, 'main/login.html')
 
 def logout_view(request):
     logout(request)
     messages.success(request, "Logged out successfully.")
-    return redirect('login')
+    return redirect('main/login')
 
 def contact(request):
     if request.method == 'POST':
@@ -135,7 +135,7 @@ def contact(request):
         ContactMessage.objects.create(name=name, email=email, message=message)
         messages.success(request, "Message sent successfully.")
         return redirect('contact')
-    return render(request, 'contact.html')
+    return render(request, 'main/contact.html')
 
 def search_results(request):
     query = request.GET.get('q')
