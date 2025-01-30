@@ -670,7 +670,7 @@ header {
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #8e44ad;
+  border-color: #007bff;
   outline: none;
 }
 
