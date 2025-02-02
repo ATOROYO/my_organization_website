@@ -1,9 +1,14 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load environment variables
+load_dotenv(Path(__file__).resolve().parent.parent / '.env')  # Windows path format
+
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+DEBUG = os.getenv('DEBUG') == 'True'
 
 DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
