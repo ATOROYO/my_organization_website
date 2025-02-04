@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+import sys
+
+sys.path.insert(0, r'C:\Users\david\OneDrive\Desktop\PLP\my_organization_website')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
