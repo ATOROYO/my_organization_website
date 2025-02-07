@@ -20,8 +20,8 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 # Application definition
 INSTALLED_APPS = [
     # Custom apps
-    'main.apps.MainConfig',
     'users.apps.UsersConfig',
+    'main.apps.MainConfig',
     'services.apps.ServicesConfig',
     
     # Django core
